@@ -1,9 +1,10 @@
 package main
 
 import (
+	"log"
+
 	"github.com/fatih/color"
 	"github.com/yoshiyoshiharu/gls/gls"
-	"log"
 )
 
 func main() {
@@ -17,12 +18,12 @@ func main() {
 		if file.IsDir() {
 			c := color.New(color.FgBlue)
 
-			file_count, err := gls.CountFiles((file))
+			childFiles, err := gls.ChildFiles((file))
 			if err != nil {
 				log.Fatal(err)
 			}
 
-			c.Printf("%s(%d)\n", file.Name(), file_count)
+			c.Printf("%s(%d)\n", file.Name(), len(childFiles))
 		} else {
 			color.White(file.Name())
 		}
