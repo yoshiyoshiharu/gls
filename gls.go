@@ -7,17 +7,38 @@ import (
 )
 
 func main() {
+	var files []os.DirEntry
+
+	dir, err := currentDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	files, err = currentDirFiles(dir)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, file := range files {
+		fmt.Println(file.Name())
+		fmt.Println(file.Type())
+	}
+}
+
+func currentDir() (string, error) {
 	dir, err := os.Getwd()
 	if err != nil {
-		log.Fatal(err)
+		return "", err
 	}
 
+	return dir, nil
+}
+
+func currentDirFiles(dir string) ([]os.DirEntry, error) {
 	fileInfos, err := os.ReadDir(dir)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 
-	for _, fileInfo := range fileInfos {
-		fmt.Println(fileInfo.Name())
-	}
+	return fileInfos, nil
 }
