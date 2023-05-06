@@ -1,2 +1,2 @@
 # gls
-custom ls command.
+lsコマンドとtreeコマンドをいい感じに表示したい
