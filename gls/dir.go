@@ -2,13 +2,11 @@ package gls
 
 import(
 	"os"
-	"errors"
 )
 
-func ChildFiles(dir os.DirEntry) ([]os.DirEntry, error) {
-	if !dir.IsDir() { return nil, errors.New("arg is not dir") }
+func ChildFiles(dir string) ([]os.DirEntry, error) {
+	files, err := os.ReadDir(dir);
 
-	files, err := os.ReadDir(dir.Name());
 	if err != nil {
 		return nil, err
 	}

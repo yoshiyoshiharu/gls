@@ -1,8 +1,9 @@
 package main
 
-import(
+import (
 	"github.com/yoshiyoshiharu/gls/gls"
 )
+
 func main() {
 	gls.DisplayCurrentDir()
 }
