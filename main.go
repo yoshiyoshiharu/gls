@@ -17,7 +17,12 @@ func main() {
 		if file.IsDir() {
 			c := color.New(color.FgBlue)
 
-			c.Printf("%s(%d)\n", file.Name(), gls.CountFiles(file))
+			file_count, err := gls.CountFiles((file))
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			c.Printf("%s(%d)\n", file.Name(), file_count)
 		} else {
 			color.White(file.Name())
 		}
