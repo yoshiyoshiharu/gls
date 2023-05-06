@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/yoshiyoshiharu/gls/gls"
 	"github.com/fatih/color"
+	"github.com/yoshiyoshiharu/gls/gls"
 	"log"
 )
 
