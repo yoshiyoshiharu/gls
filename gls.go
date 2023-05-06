@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/yoshiyoshiharu/gls/ls"
 	"github.com/fatih/color"
 	"log"
@@ -15,6 +14,10 @@ func main() {
 	}
 
 	for _, file := range currentDirFiles {
-		fmt.Println(file.Name())
+		if file.IsDir() {
+			color.Blue(file.Name())
+		} else {
+			color.White(file.Name())
+		}
 	}
 }
