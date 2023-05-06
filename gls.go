@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/yoshiyoshiharu/gls/ls"
+	"github.com/fatih/color"
 	"log"
 )
 
