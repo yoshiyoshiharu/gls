@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/yoshiyoshiharu/gls/ls"
+	"github.com/yoshiyoshiharu/gls/gls"
 	"github.com/fatih/color"
 	"log"
 )
 
 func main() {
-	currentDirFiles, err := ls.CurrentDirFiles()
+	currentDirFiles, err := gls.CurrentDirFiles()
 
 	if err != nil {
 		log.Fatal(err)

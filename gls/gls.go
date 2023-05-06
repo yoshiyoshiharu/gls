@@ -1,4 +1,4 @@
-package ls
+package gls
 
 import (
 	"os"
