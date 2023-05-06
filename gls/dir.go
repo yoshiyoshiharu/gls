@@ -4,6 +4,6 @@ import(
 	"os"
 )
 
-func CountFiles(d os.DirEntry) int {
+func CountFiles(dir os.DirEntry) int {
 	return 2
 }
