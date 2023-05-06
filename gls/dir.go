@@ -5,6 +5,9 @@ import(
 	"errors"
 )
 
+// TODO
+// Dirを構造体にして、childFilesを要素orメソッドで持ちたい
+
 func CountFiles(dir os.DirEntry) (int, error) {
 	if !dir.IsDir() { return 0, errors.New("arg is not dir") }
 
