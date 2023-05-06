@@ -2,42 +2,18 @@ package main
 
 import (
 	"fmt"
+	"github.com/yoshiyoshiharu/gls/ls"
 	"log"
-	"os"
 )
 
 func main() {
-	var files []os.DirEntry
+	currentDirFiles, err := ls.CurrentDirFiles()
 
-	dir, err := currentDir()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	files, err = currentDirFiles(dir)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	for _, file := range files {
+	for _, file := range currentDirFiles {
 		fmt.Println(file.Name())
 	}
-}
-
-func currentDir() (string, error) {
-	dir, err := os.Getwd()
-	if err != nil {
-		return "", err
-	}
-
-	return dir, nil
-}
-
-func currentDirFiles(dir string) ([]os.DirEntry, error) {
-	fileInfos, err := os.ReadDir(dir)
-	if err != nil {
-		return nil, err
-	}
-
-	return fileInfos, nil
 }
