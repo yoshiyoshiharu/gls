@@ -42,14 +42,12 @@ func recursivelyDisplayDir(dir string) (os.DirEntry, error) {
 		path := filepath.Join(dir, file.Name())
 		if file.IsDir() {
 			c := color.New(color.FgBlue)
-			println("aaaa")
 
 			childFiles, err := ChildFiles(path)
 			if err != nil {
 				log.Fatal(err)
 				return nil, err
 			}
-			println("aaa")
 
 			c.Printf("%s(%d)\n", file.Name(), len(childFiles))
 			recursivelyDisplayDir(path)
