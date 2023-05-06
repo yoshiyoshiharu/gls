@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/fatih/color"
 )
@@ -25,17 +26,17 @@ func DisplayCurrentDir() {
 			}
 
 			c.Printf("%s(%d)\n", file.Name(), len(childFiles))
-			recursivelyDisplayDir(file.Name())
+			recursivelyDisplayDir(file.Name(), 0)
 		} else {
 			color.White(file.Name())
 		}
 	}
 }
 
-func recursivelyDisplayDir(dir string) (os.DirEntry, error) {
+func recursivelyDisplayDir(dir string, nl int) (os.DirEntry, int, error) {
 	files, err := os.ReadDir(dir)
 	if err != nil {
-		return nil, err
+		return nil, 0, err
 	}
 
 	for _, file := range files {
@@ -46,15 +47,16 @@ func recursivelyDisplayDir(dir string) (os.DirEntry, error) {
 			childFiles, err := ChildFiles(path)
 			if err != nil {
 				log.Fatal(err)
-				return nil, err
+				return nil, 0, err
 			}
 
-			c.Printf("%s(%d)\n", file.Name(), len(childFiles))
-			recursivelyDisplayDir(path)
+			c.Printf("%s(%d)\n",  strings.Repeat("--", nl) + file.Name(), len(childFiles))
+			recursivelyDisplayDir(path, nl)
 		} else {
 			color.White("--" + file.Name())
 		}
 	}
 
-	return nil, nil
+	nl++
+	return nil, nl, nil
 }
