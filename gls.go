@@ -21,7 +21,6 @@ func main() {
 
 	for _, file := range files {
 		fmt.Println(file.Name())
-		fmt.Println(file.Type())
 	}
 }
 
