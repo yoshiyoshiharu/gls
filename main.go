@@ -15,7 +15,9 @@ func main() {
 
 	for _, file := range currentDirFiles {
 		if file.IsDir() {
-			color.Blue(file.Name())
+			c := color.New(color.FgBlue)
+
+			c.Println(file.Name(), gls.CountFiles(file))
 		} else {
 			color.White(file.Name())
 		}
