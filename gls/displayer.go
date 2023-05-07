@@ -20,7 +20,7 @@ func DisplayCurrentDir() {
 		if file.IsDir() {
 			c := color.New(color.FgBlue)
 
-			childFiles, err := ChildFiles(file.Name())
+			childFiles, err := os.ReadDir(file.Name())
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -44,7 +44,7 @@ func displayRecursivelyDir(dir string, nest int) (os.DirEntry, int, error) {
 		if file.IsDir() {
 			c := color.New(color.FgBlue)
 
-			childFiles, err := ChildFiles(path)
+			childFiles, err := os.ReadDir(path)
 			if err != nil {
 				log.Fatal(err)
 				return nil, 0, err
