@@ -25,7 +25,7 @@ func DisplayCurrentDir(maxNest int) error {
 
 func displayRecursivelyDir(dir string, nest int, maxNest int) (os.DirEntry, int, error) {
 	if nest > maxNest {
-		return nil, 0, nil
+		return nil, nest, nil
 	}
 
 	files, err := os.ReadDir(dir)
