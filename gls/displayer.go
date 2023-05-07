@@ -14,6 +14,7 @@ func DisplayCurrentDir() error {
 	if err != nil {
 		return err
 	}
+
 	_, _, err = displayRecursivelyDir(dir, 0)
 	if err != nil {
 		return err
