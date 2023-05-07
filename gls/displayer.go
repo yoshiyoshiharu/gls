@@ -9,28 +9,17 @@ import (
 	"github.com/fatih/color"
 )
 
-func DisplayCurrentDir() {
-	currentDirFiles, err := CurrentDirFiles()
-
+func DisplayCurrentDir() error {
+	dir, err := os.Getwd()
 	if err != nil {
-		log.Fatal(err)
+		return err
+	}
+	_, _, err = displayRecursivelyDir(dir, 0)
+	if err != nil {
+		return err
 	}
 
-	for _, file := range currentDirFiles {
-		if file.IsDir() {
-			c := color.New(color.FgBlue)
-
-			childFiles, err := os.ReadDir(file.Name())
-			if err != nil {
-				log.Fatal(err)
-			}
-
-			c.Printf("%s(%d)\n", file.Name(), len(childFiles))
-			displayRecursivelyDir(file.Name(), 1)
-		} else {
-			color.White(file.Name())
-		}
-	}
+	return nil
 }
 
 func displayRecursivelyDir(dir string, nest int) (os.DirEntry, int, error) {

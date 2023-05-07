@@ -5,5 +5,5 @@ import (
 )
 
 func main() {
-	gls.DisplayCurrentDir()
+	gls.Run()
 }
