@@ -8,6 +8,5 @@ func Run() {
 	nest := flag.Int("n", 0, "Max depth of the tree")
 	flag.Parse()
 
-	println(*nest)
-	DisplayCurrentDir()
+	DisplayCurrentDir(*nest)
 }

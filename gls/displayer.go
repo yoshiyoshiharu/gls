@@ -9,13 +9,13 @@ import (
 	"github.com/fatih/color"
 )
 
-func DisplayCurrentDir() error {
+func DisplayCurrentDir(maxNest int) error {
 	dir, err := os.Getwd()
 	if err != nil {
 		return err
 	}
 
-	_, _, err = displayRecursivelyDir(dir, 0)
+	_, _, err = displayRecursivelyDir(dir, 0, maxNest)
 	if err != nil {
 		return err
 	}
@@ -23,7 +23,10 @@ func DisplayCurrentDir() error {
 	return nil
 }
 
-func displayRecursivelyDir(dir string, nest int) (os.DirEntry, int, error) {
+func displayRecursivelyDir(dir string, nest int, maxNest int) (os.DirEntry, int, error) {
+	if nest > maxNest {
+		return nil, 0, nil
+	}
 	files, err := os.ReadDir(dir)
 	if err != nil {
 		return nil, 0, err
@@ -41,7 +44,7 @@ func displayRecursivelyDir(dir string, nest int) (os.DirEntry, int, error) {
 			}
 
 			c.Printf("%s(%d)\n",  strings.Repeat("  ", nest) + "└──" + file.Name(), len(childFiles))
-			displayRecursivelyDir(path, nest + 1)
+			displayRecursivelyDir(path, nest + 1, maxNest)
 		} else {
 			color.White(strings.Repeat("  ", nest) + "└──" + file.Name())
 		}
