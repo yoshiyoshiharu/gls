@@ -33,7 +33,7 @@ func DisplayCurrentDir() {
 	}
 }
 
-func displayRecursivelyDir(dir string, nl int) (os.DirEntry, int, error) {
+func displayRecursivelyDir(dir string, nest int) (os.DirEntry, int, error) {
 	files, err := os.ReadDir(dir)
 	if err != nil {
 		return nil, 0, err
@@ -50,12 +50,12 @@ func displayRecursivelyDir(dir string, nl int) (os.DirEntry, int, error) {
 				return nil, 0, err
 			}
 
-			c.Printf("%s(%d)\n",  strings.Repeat("  ", nl) + "└──" + file.Name(), len(childFiles))
-			displayRecursivelyDir(path, nl + 1)
+			c.Printf("%s(%d)\n",  strings.Repeat("  ", nest) + "└──" + file.Name(), len(childFiles))
+			displayRecursivelyDir(path, nest + 1)
 		} else {
-			color.White(strings.Repeat("  ", nl) + "└──" + file.Name())
+			color.White(strings.Repeat("  ", nest) + "└──" + file.Name())
 		}
 	}
 
-	return nil, nl, nil
+	return nil, nest, nil
 }
