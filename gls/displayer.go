@@ -27,6 +27,7 @@ func displayRecursivelyDir(dir string, nest int, maxNest int) (os.DirEntry, int,
 	if nest > maxNest {
 		return nil, 0, nil
 	}
+
 	files, err := os.ReadDir(dir)
 	if err != nil {
 		return nil, 0, err
@@ -44,6 +45,7 @@ func displayRecursivelyDir(dir string, nest int, maxNest int) (os.DirEntry, int,
 			}
 
 			c.Printf("%s(%d)\n",  strings.Repeat("  ", nest) + "└──" + file.Name(), len(childFiles))
+
 			displayRecursivelyDir(path, nest + 1, maxNest)
 		} else {
 			color.White(strings.Repeat("  ", nest) + "└──" + file.Name())
