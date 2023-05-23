@@ -4,12 +4,12 @@ Using `ls` and `tree` nicely.
 ### Usage[WIP]
 Display current dirs' files and dirs(with number of child files).
 
-`lsd`
+`gls`
 
 ![sample](images/sample.png)
 
 When you pass `-n [num]`, display nested dirs which depth is `n`
 
-`lsd -n  2`
+`gls -n  2`
 
 ![sample2](images/sample2.png)
